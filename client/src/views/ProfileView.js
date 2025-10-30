@@ -23,7 +23,7 @@ function ProfileView({ user, onLogout }) {
       setProfile(profileData);
       setLeaderboard(leaderboardData);
     } catch (err) {
-      setError("Failed to load profile data");
+      setError("Không thể tải dữ liệu");
       console.error(err);
     } finally {
       setLoading(false);
@@ -35,7 +35,7 @@ function ProfileView({ user, onLogout }) {
       <div className="profile-view">
         <div className="loading-container">
           <div className="spinner"></div>
-          <p>Loading profile...</p>
+          <p>Đang tải...</p>
         </div>
       </div>
     );
@@ -47,7 +47,7 @@ function ProfileView({ user, onLogout }) {
         <div className="error-container">
           <p>{error}</p>
           <button className="btn btn-primary" onClick={() => navigate("/")}>
-            Go Home
+            Về trang chủ
           </button>
         </div>
       </div>
@@ -65,11 +65,11 @@ function ProfileView({ user, onLogout }) {
         {/* Header */}
         <div className="profile-header">
           <button className="btn-back" onClick={() => navigate("/")}>
-            ← Back
+            ← Quay lại
           </button>
-          <h1>Player Profile</h1>
+          <h1>Thông tin cá nhân</h1>
           <button className="btn btn-danger btn-sm" onClick={onLogout}>
-            Logout
+            Đăng xuất
           </button>
         </div>
 
@@ -83,7 +83,7 @@ function ProfileView({ user, onLogout }) {
           <h2 className="profile-username">{profile.username}</h2>
           <p className="profile-email">{profile.email}</p>
           <div className="profile-rating">
-            <span className="rating-label">Rating:</span>
+            <span className="rating-label">Điểm xếp hạng:</span>
             <span className="rating-value">{profile.rating || 1000}</span>
           </div>
         </div>
@@ -94,54 +94,48 @@ function ProfileView({ user, onLogout }) {
             className="stat-card card scale-in"
             style={{ animationDelay: "0.1s" }}
           >
-            <div className="stat-icon">🎮</div>
             <div className="stat-value">{profile.games_played || 0}</div>
-            <div className="stat-label">Games Played</div>
+            <div className="stat-label">Số trận đã chơi</div>
           </div>
 
           <div
             className="stat-card card scale-in"
             style={{ animationDelay: "0.2s" }}
           >
-            <div className="stat-icon">🏆</div>
-            <div className="stat-value">{profile.wins || 0}</div>
-            <div className="stat-label">Wins</div>
+            <div className="stat-value stat-win">{profile.wins || 0}</div>
+            <div className="stat-label">Thắng</div>
           </div>
 
           <div
             className="stat-card card scale-in"
             style={{ animationDelay: "0.3s" }}
           >
-            <div className="stat-icon">💔</div>
-            <div className="stat-value">{profile.losses || 0}</div>
-            <div className="stat-label">Losses</div>
+            <div className="stat-value stat-loss">{profile.losses || 0}</div>
+            <div className="stat-label">Thua</div>
           </div>
 
           <div
             className="stat-card card scale-in"
             style={{ animationDelay: "0.4s" }}
           >
-            <div className="stat-icon">🤝</div>
             <div className="stat-value">{profile.draws || 0}</div>
-            <div className="stat-label">Draws</div>
+            <div className="stat-label">Hòa</div>
           </div>
 
           <div
             className="stat-card card scale-in"
             style={{ animationDelay: "0.5s" }}
           >
-            <div className="stat-icon">📊</div>
             <div className="stat-value">{winRate}%</div>
-            <div className="stat-label">Win Rate</div>
+            <div className="stat-label">Tỷ lệ thắng</div>
           </div>
 
           <div
             className="stat-card card scale-in"
             style={{ animationDelay: "0.6s" }}
           >
-            <div className="stat-icon">🔥</div>
             <div className="stat-value">{profile.highest_streak || 0}</div>
-            <div className="stat-label">Best Streak</div>
+            <div className="stat-label">Chuỗi thắng cao nhất</div>
           </div>
         </div>
 
@@ -150,7 +144,7 @@ function ProfileView({ user, onLogout }) {
           className="leaderboard-section card scale-in"
           style={{ animationDelay: "0.7s" }}
         >
-          <h2 className="section-title">🏅 Leaderboard (Top 10)</h2>
+          <h2 className="section-title">Bảng xếp hạng (Top 10)</h2>
           <div className="leaderboard-table">
             {leaderboard.map((player, index) => (
               <div
@@ -163,12 +157,12 @@ function ProfileView({ user, onLogout }) {
                   {index === 0 && "🥇"}
                   {index === 1 && "🥈"}
                   {index === 2 && "🥉"}
-                  {index > 2 && `#${index + 1}`}
+                  {index > 2 && `${index + 1}`}
                 </div>
                 <div className="player-name">{player.username}</div>
                 <div className="player-stats">
-                  <span className="stat-item">⭐ {player.rating}</span>
-                  <span className="stat-item">🏆 {player.wins}</span>
+                  <span className="stat-item">Điểm: {player.rating}</span>
+                  <span className="stat-item">Thắng: {player.wins}</span>
                 </div>
               </div>
             ))}

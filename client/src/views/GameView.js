@@ -29,10 +29,8 @@ function GameView({ user }) {
       return;
     }
 
-    // Connect to socket
     const socket = socketService.connect(user?.id);
 
-    // Setup event listeners
     socket.on("waiting", handleWaiting);
     socket.on("gameStart", handleGameStart);
     socket.on("updateBoard", handleUpdateBoard);
@@ -40,11 +38,9 @@ function GameView({ user }) {
     socket.on("playerLeft", handlePlayerLeft);
     socket.on("error", handleError);
 
-    // Find game
     socketService.findGame(mode);
 
     return () => {
-      // Cleanup
       socket.off("waiting", handleWaiting);
       socket.off("gameStart", handleGameStart);
       socket.off("updateBoard", handleUpdateBoard);
@@ -59,7 +55,7 @@ function GameView({ user }) {
     setGameState((prev) => ({
       ...prev,
       waiting: true,
-      message: data.message,
+      message: data.message || "Đang tìm đối thủ...",
     }));
   };
 
@@ -72,7 +68,7 @@ function GameView({ user }) {
       currentTurn: data.currentTurn,
       gameActive: true,
       waiting: false,
-      message: data.message,
+      message: data.message || "Trò chơi đã bắt đầu!",
     }));
   };
 
@@ -90,7 +86,7 @@ function GameView({ user }) {
       gameActive: false,
       gameOver: true,
       winner: data.winner,
-      message: data.message,
+      message: data.message || "Trò chơi kết thúc!",
     }));
   };
 
@@ -98,7 +94,7 @@ function GameView({ user }) {
     setGameState((prev) => ({
       ...prev,
       gameActive: false,
-      message: data.message,
+      message: data.message || "Đối thủ đã rời đi",
     }));
   };
 
@@ -132,21 +128,21 @@ function GameView({ user }) {
       waiting: true,
       gameOver: false,
       winner: null,
-      message: "Finding new game...",
+      message: "Đang tìm trận đấu mới...",
     });
   };
 
   const renderSymbol = (symbol) => {
-    if (symbol === "X") return "❌";
-    if (symbol === "O") return "⭕";
-    if (symbol === "V") return "✅";
+    if (symbol === "X") return "X";
+    if (symbol === "O") return "O";
+    if (symbol === "V") return "V";
     return "";
   };
 
   const getGameModeName = () => {
-    if (mode === "2player") return "2 Players";
-    if (mode === "3player") return "3 Players";
-    if (mode === "vs_bot") return "vs Bot";
+    if (mode === "2player") return "Chế độ 2 người chơi";
+    if (mode === "3player") return "Chế độ 3 người chơi";
+    if (mode === "vs_bot") return "Chơi với máy";
     return "";
   };
 
@@ -156,10 +152,9 @@ function GameView({ user }) {
         {/* Header */}
         <div className="game-header">
           <button className="btn-back" onClick={handleLeaveGame}>
-            ← Leave Game
+            ← Quay lại
           </button>
-          <h1 className="game-title">🎮 {getGameModeName()}</h1>
-          <div className="game-mode-badge">{mode}</div>
+          <h1 className="game-title">{getGameModeName()}</h1>
         </div>
 
         {/* Status Panel */}
@@ -173,36 +168,38 @@ function GameView({ user }) {
 
           {gameState.gameActive && (
             <div className="status-playing">
-              <div className="player-turn">
-                <span className="turn-label">Current Turn:</span>
-                <span className="turn-symbol">
-                  {renderSymbol(gameState.currentTurn)}
-                </span>
-              </div>
-              <div className="your-symbol">
-                <span className="your-label">You are:</span>
-                <span className="your-symbol-value">
-                  {renderSymbol(gameState.mySymbol)}
-                </span>
+              <div className="player-info">
+                <div className="info-item">
+                  <span className="label">Lượt chơi:</span>
+                  <span className="value symbol-{gameState.currentTurn}">
+                    {renderSymbol(gameState.currentTurn)}
+                  </span>
+                </div>
+                <div className="info-item">
+                  <span className="label">Bạn đang chơi:</span>
+                  <span className="value symbol-{gameState.mySymbol}">
+                    {renderSymbol(gameState.mySymbol)}
+                  </span>
+                </div>
               </div>
               {gameState.currentTurn === gameState.mySymbol && (
-                <div className="your-turn-indicator">🎯 Your Turn!</div>
+                <div className="your-turn-indicator">Đến lượt của bạn</div>
               )}
             </div>
           )}
 
           {gameState.gameOver && !gameState.waiting && (
             <div className="status-gameover">
-              <div className="gameover-icon">
+              <h2 className="result-title">
                 {gameState.winner === gameState.mySymbol
-                  ? "🏆"
+                  ? "Bạn đã thắng!"
                   : gameState.winner === "draw"
-                  ? "🤝"
-                  : "😢"}
-              </div>
-              <p className="gameover-message">{gameState.message}</p>
+                  ? "Hòa"
+                  : "Bạn đã thua"}
+              </h2>
+              <p className="result-message">{gameState.message}</p>
               <button className="btn btn-primary" onClick={handlePlayAgain}>
-                🔄 Play Again
+                Chơi lại
               </button>
             </div>
           )}
@@ -217,6 +214,8 @@ function GameView({ user }) {
                   <div
                     key={`${rowIndex}-${colIndex}`}
                     className={`cell ${cell ? "filled" : ""} ${
+                      cell ? `symbol-${cell}` : ""
+                    } ${
                       !gameState.gameActive ||
                       gameState.currentTurn !== gameState.mySymbol
                         ? "disabled"
@@ -236,17 +235,17 @@ function GameView({ user }) {
 
         {/* Instructions */}
         <div className="instructions card">
-          <h3>📜 How to Play</h3>
+          <h3>Luật chơi</h3>
           <ul>
-            <li>Click on an empty cell to place your symbol</li>
+            <li>Nhấp vào ô trống để đánh quân cờ</li>
             <li>
-              Get 5 symbols in a row (horizontal, vertical, or diagonal) to win
+              Xếp 5 quân liên tiếp theo hàng ngang, dọc hoặc chéo để chiến thắng
             </li>
-            <li>Take turns with your opponent(s)</li>
+            <li>Lần lượt đánh theo từng người chơi</li>
             <li>
               {mode === "vs_bot"
-                ? "The bot will play automatically"
-                : "Wait for your turn"}
+                ? "Máy sẽ tự động đánh sau lượt của bạn"
+                : "Đợi đối thủ đánh xong"}
             </li>
           </ul>
         </div>

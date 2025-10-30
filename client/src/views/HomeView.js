@@ -1,8 +1,3 @@
-/**
- * HOME VIEW
- * Main menu with game mode selection
- */
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./HomeView.css";
@@ -19,28 +14,28 @@ function HomeView({ user, onLogout }) {
       <div className="home-container">
         {/* Header */}
         <header className="home-header">
-          <h1 className="home-title">🎮 CỜ CARO PLATFORM</h1>
+          <h1 className="home-title">Cờ Caro Online</h1>
           <p className="home-subtitle">
-            Advanced Multiplayer Game - Real-time Strategy
+            Trò chơi cờ caro trực tuyến - Chơi với bạn bè hoặc máy tính
           </p>
         </header>
 
-        {/* User Info or Login Button */}
+        {/* User Info */}
         <div className="home-user-section">
           {user ? (
             <div className="user-info">
               <span className="user-greeting">
-                👋 Welcome, <strong>{user.username}</strong>!
+                Xin chào, <strong>{user.username}</strong>
               </span>
               <div className="user-actions">
                 <button
                   className="btn btn-secondary btn-sm"
                   onClick={() => navigate("/profile")}
                 >
-                  📊 Profile
+                  Thông tin cá nhân
                 </button>
                 <button className="btn btn-danger btn-sm" onClick={onLogout}>
-                  🚪 Logout
+                  Đăng xuất
                 </button>
               </div>
             </div>
@@ -50,13 +45,13 @@ function HomeView({ user, onLogout }) {
                 className="btn btn-primary"
                 onClick={() => navigate("/login")}
               >
-                🔐 Login
+                Đăng nhập
               </button>
               <button
                 className="btn btn-secondary"
                 onClick={() => navigate("/register")}
               >
-                ✨ Register
+                Đăng ký
               </button>
             </div>
           )}
@@ -64,7 +59,7 @@ function HomeView({ user, onLogout }) {
 
         {/* Game Modes */}
         <div className="game-modes">
-          <h2 className="section-title">Select Game Mode</h2>
+          <h2 className="section-title">Chọn chế độ chơi</h2>
 
           <div className="mode-grid">
             {/* 2 Player Mode */}
@@ -72,12 +67,14 @@ function HomeView({ user, onLogout }) {
               className="mode-card scale-in"
               onClick={() => handleGameModeSelect("2player")}
             >
-              <div className="mode-icon">👥</div>
-              <h3 className="mode-title">2 Players</h3>
+              <h3 className="mode-title">2 người chơi</h3>
               <p className="mode-description">
-                Classic 1v1 mode on 10x10 board. First to get 5 in a row wins!
+                Chơi với người chơi khác trực tuyến. Bàn cờ 10x10, ai xếp được 5
+                quân liên tiếp trước sẽ thắng.
               </p>
-              <div className="mode-badge badge-blue">Online Matchmaking</div>
+              <div className="mode-badge badge-blue">
+                Tìm đối thủ trực tuyến
+              </div>
             </div>
 
             {/* 3 Player Mode */}
@@ -86,12 +83,14 @@ function HomeView({ user, onLogout }) {
               onClick={() => handleGameModeSelect("3player")}
               style={{ animationDelay: "0.1s" }}
             >
-              <div className="mode-icon">👨‍👩‍👦</div>
-              <h3 className="mode-title">3 Players</h3>
+              <h3 className="mode-title">3 người chơi</h3>
               <p className="mode-description">
-                Chaotic 3-way battle! X vs O vs V. Strategic thinking required.
+                Chơi với 2 người chơi khác. 3 người lần lượt đánh X, O, V. Cần
+                chiến thuật cao để giành chiến thắng.
               </p>
-              <div className="mode-badge badge-purple">Online Matchmaking</div>
+              <div className="mode-badge badge-purple">
+                Tìm đối thủ trực tuyến
+              </div>
             </div>
 
             {/* VS Bot Mode */}
@@ -100,49 +99,36 @@ function HomeView({ user, onLogout }) {
               onClick={() => handleGameModeSelect("vs_bot")}
               style={{ animationDelay: "0.2s" }}
             >
-              <div className="mode-icon">🤖</div>
-              <h3 className="mode-title">vs AI Bot</h3>
+              <h3 className="mode-title">Chơi với máy</h3>
               <p className="mode-description">
-                Practice against intelligent AI. Perfect for solo training!
+                Luyện tập với máy tính. Phù hợp để làm quen với trò chơi hoặc
+                rèn luyện kỹ năng.
               </p>
-              <div className="mode-badge badge-green">Instant Play</div>
+              <div className="mode-badge badge-green">Chơi ngay lập tức</div>
             </div>
           </div>
         </div>
 
         {/* Features */}
         <div className="features-section">
-          <h2 className="section-title">Features</h2>
+          <h2 className="section-title">Tính năng</h2>
           <div className="features-grid">
             <div className="feature-item">
-              <span className="feature-icon">⚡</span>
-              <span className="feature-text">Real-time Multiplayer</span>
+              <span className="feature-text">Chơi trực tuyến real-time</span>
             </div>
             <div className="feature-item">
-              <span className="feature-icon">🏆</span>
-              <span className="feature-text">Ranking & Leaderboard</span>
+              <span className="feature-text">Bảng xếp hạng người chơi</span>
             </div>
             <div className="feature-item">
-              <span className="feature-icon">🎯</span>
-              <span className="feature-text">Smart AI Opponent</span>
+              <span className="feature-text">Máy tính thông minh</span>
             </div>
             <div className="feature-item">
-              <span className="feature-icon">📊</span>
-              <span className="feature-text">Statistics Tracking</span>
+              <span className="feature-text">Thống kê chi tiết</span>
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <footer className="home-footer">
-          <p className="tech-info">
-            <span className="tech-badge">Node.js</span>
-            <span className="tech-badge">React</span>
-            <span className="tech-badge">Socket.IO</span>
-            <span className="tech-badge">PostgreSQL</span>
-          </p>
-          <p className="copyright">Version 2.0 - Advanced Edition</p>
-        </footer>
       </div>
     </div>
   );

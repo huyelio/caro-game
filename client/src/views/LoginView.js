@@ -19,7 +19,7 @@ function LoginView({ onLogin }) {
       onLogin(data.user, data.token);
       navigate("/");
     } catch (err) {
-      setError(err.response?.data?.error || "Login failed");
+      setError(err.response?.data?.error || "Đăng nhập thất bại");
     } finally {
       setLoading(false);
     }
@@ -30,9 +30,9 @@ function LoginView({ onLogin }) {
       <div className="auth-container">
         <div className="auth-card">
           <div className="auth-header">
-            <h1 className="auth-title">🔐 Login</h1>
+            <h1 className="auth-title">Đăng nhập</h1>
             <p className="auth-subtitle">
-              Welcome back! Enter your credentials
+              Đăng nhập để tiếp tục chơi
             </p>
           </div>
 
@@ -50,11 +50,12 @@ function LoginView({ onLogin }) {
                 }
                 required
                 autoComplete="email"
+                placeholder="Nhập email của bạn"
               />
             </div>
 
             <div className="form-group">
-              <label className="form-label">Password</label>
+              <label className="form-label">Mật khẩu</label>
               <input
                 type="password"
                 className="form-input"
@@ -64,6 +65,7 @@ function LoginView({ onLogin }) {
                 }
                 required
                 autoComplete="current-password"
+                placeholder="Nhập mật khẩu"
               />
             </div>
 
@@ -72,16 +74,16 @@ function LoginView({ onLogin }) {
               className="btn btn-primary btn-full"
               disabled={loading}
             >
-              {loading ? "Logging in..." : "🚀 Login"}
+              {loading ? "Đang đăng nhập..." : "Đăng nhập"}
             </button>
           </form>
 
           <div className="auth-footer">
             <p>
-              Don't have an account? <Link to="/register">Register here</Link>
+              Chưa có tài khoản? <Link to="/register">Đăng ký ngay</Link>
             </p>
             <p>
-              <Link to="/">← Back to Home</Link>
+              <Link to="/">← Quay lại trang chủ</Link>
             </p>
           </div>
         </div>

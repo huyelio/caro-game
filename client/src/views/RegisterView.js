@@ -27,7 +27,7 @@ function RegisterView({ onLogin }) {
       onLogin(data.user, data.token);
       navigate("/");
     } catch (err) {
-      setError(err.response?.data?.error || "Registration failed");
+      setError(err.response?.data?.error || "Đăng ký thất bại");
     } finally {
       setLoading(false);
     }
@@ -38,9 +38,9 @@ function RegisterView({ onLogin }) {
       <div className="auth-container">
         <div className="auth-card">
           <div className="auth-header">
-            <h1 className="auth-title">✨ Register</h1>
+            <h1 className="auth-title">Đăng ký</h1>
             <p className="auth-subtitle">
-              Create your account to start playing
+              Tạo tài khoản mới để bắt đầu chơi
             </p>
           </div>
 
@@ -48,7 +48,7 @@ function RegisterView({ onLogin }) {
             {error && <div className="alert alert-error">{error}</div>}
 
             <div className="form-group">
-              <label className="form-label">Username</label>
+              <label className="form-label">Tên người dùng</label>
               <input
                 type="text"
                 className="form-input"
@@ -59,6 +59,7 @@ function RegisterView({ onLogin }) {
                 required
                 minLength="3"
                 autoComplete="username"
+                placeholder="Tên hiển thị của bạn"
               />
             </div>
 
@@ -73,11 +74,12 @@ function RegisterView({ onLogin }) {
                 }
                 required
                 autoComplete="email"
+                placeholder="Email của bạn"
               />
             </div>
 
             <div className="form-group">
-              <label className="form-label">Password</label>
+              <label className="form-label">Mật khẩu</label>
               <input
                 type="password"
                 className="form-input"
@@ -88,6 +90,7 @@ function RegisterView({ onLogin }) {
                 required
                 minLength="6"
                 autoComplete="new-password"
+                placeholder="Tối thiểu 6 ký tự"
               />
             </div>
 
@@ -96,16 +99,16 @@ function RegisterView({ onLogin }) {
               className="btn btn-primary btn-full"
               disabled={loading}
             >
-              {loading ? "Creating account..." : "🚀 Register"}
+              {loading ? "Đang tạo tài khoản..." : "Đăng ký"}
             </button>
           </form>
 
           <div className="auth-footer">
             <p>
-              Already have an account? <Link to="/login">Login here</Link>
+              Đã có tài khoản? <Link to="/login">Đăng nhập ngay</Link>
             </p>
             <p>
-              <Link to="/">← Back to Home</Link>
+              <Link to="/">← Quay lại trang chủ</Link>
             </p>
           </div>
         </div>
