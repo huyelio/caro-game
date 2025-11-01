@@ -1,6 +1,48 @@
 # 🚀 QUICKSTART - Game Cờ Caro Online
 
-## Chạy nhanh trong 3 bước
+## 🐳 Chạy bằng Docker (Khuyến nghị - Đơn giản nhất!)
+
+### Yêu cầu
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) đã cài đặt
+
+### Chỉ cần 2 bước:
+
+#### 1️⃣ Clone repo
+
+```bash
+git clone <repo-url>
+cd btl
+```
+
+#### 2️⃣ Chạy Docker
+
+```bash
+docker-compose up
+```
+
+**Chờ khoảng 1-2 phút để build lần đầu**, sau đó:
+
+- Mở browser: **http://localhost:3000**
+- Game đã sẵn sàng! 🎮
+
+#### Tắt Docker
+
+```bash
+# Nhấn Ctrl+C để dừng
+# Hoặc chạy lệnh sau để dừng và xóa containers:
+docker-compose down
+```
+
+---
+
+## 💻 Chạy không dùng Docker (Cách truyền thống)
+
+### Yêu cầu
+
+- Node.js >= 18
+- PostgreSQL đã cài đặt và chạy
+- Tạo database tên `caro_game`
 
 ### 1️⃣ Cài đặt
 
@@ -68,7 +110,60 @@ ip addr show
 
 ## 🔧 Troubleshooting
 
-### Port 3000 đã bị sử dụng?
+### 🐳 Docker Troubleshooting
+
+#### Lỗi "port already in use"
+
+```bash
+# Dừng tất cả containers
+docker-compose down
+
+# Kiểm tra port đang sử dụng
+# Windows
+netstat -ano | findstr :3000
+netstat -ano | findstr :3001
+
+# Mac/Linux
+lsof -i :3000
+lsof -i :3001
+```
+
+#### Rebuild containers (sau khi sửa code)
+
+```bash
+# Rebuild và khởi động lại
+docker-compose up --build
+
+# Hoặc rebuild từng service cụ thể
+docker-compose build server
+docker-compose up
+```
+
+#### Xem logs
+
+```bash
+# Xem logs tất cả services
+docker-compose logs
+
+# Xem logs của service cụ thể
+docker-compose logs server
+docker-compose logs client
+docker-compose logs postgres
+
+# Xem logs realtime
+docker-compose logs -f
+```
+
+#### Xóa toàn bộ (reset lại từ đầu)
+
+```bash
+docker-compose down -v  # -v để xóa cả volumes (database data)
+docker-compose up --build
+```
+
+### 💻 Troubleshooting không dùng Docker
+
+#### Port 3000 đã bị sử dụng?
 
 ```bash
 # Windows
@@ -84,11 +179,12 @@ Hoặc đổi port:
 PORT=4000 npm start
 ```
 
-### Không kết nối được?
+#### Không kết nối được?
 
 1. Kiểm tra server đã chạy chưa
 2. Kiểm tra firewall có block port không
 3. Mở DevTools (F12) → Console để xem lỗi
+4. Kiểm tra PostgreSQL đã chạy chưa
 
 ---
 

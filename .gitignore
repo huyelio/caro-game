@@ -46,3 +46,7 @@ coverage/
 .cache/
 temp/
 tmp/
+
+# Docker
+*.env.docker
+docker-compose.override.yml
