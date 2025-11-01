@@ -14,7 +14,7 @@ function HomeView({ user, onLogout }) {
       <div className="home-container">
         {/* Header */}
         <header className="home-header">
-          <h1 className="home-title">Cờ Caro Online</h1>
+          <h1 className="home-title">Cờ Caro Online ddmmmđ</h1>
           <p className="home-subtitle">
             Trò chơi cờ caro trực tuyến - Chơi với bạn bè hoặc máy tính
           </p>
