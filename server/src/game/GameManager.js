@@ -17,6 +17,9 @@ class GameManager {
    * Add player to matchmaking queue
    */
   addToQueue(socketId, mode, userId = null) {
+    // Remove player from queues first to avoid duplicates
+    this.removeFromQueues(socketId);
+
     const player = { socketId, userId, joinedAt: Date.now() };
 
     if (mode === "2player") {
