@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "db:setup": "node src/database/setup.js"
+    "db:setup": "node src/database/setup.js",
+    "db:seed": "node src/database/import_seed.js"
   },
   "dependencies": {
     "express": "^4.18.2",

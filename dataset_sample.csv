@@ -1,0 +1,18 @@
+#  TABLE: users ,,,,,,,,,,
+id,username,email,password_hash,created_at,last_login,,,,,
+1,huyqt,huyqt@gmail.com,$2b$10$rKvVPr8e9xFQN8YGJQqYN.QVQy.Oa9qVJ.8Z7xN5bP8Y1J7cR8QGC,11/1/2024 10:00,11/2/2024 9:00,,,,,
+2,huytq,huytq@gmail.com,$2b$10$rKvVPr8e9xFQN8YGJQqYN.QVQy.Oa9qVJ.8Z7xN5bP8Y1J7cR8QGC,11/1/2024 11:00,11/2/2024 8:00,,,,,
+3,canhdd,canhdd@gmail.com,$2b$10$rKvVPr8e9xFQN8YGJQqYN.QVQy.Oa9qVJ.8Z7xN5bP8Y1J7cR8QGC,11/1/2024 12:00,11/2/2024 7:00,,,,,
+,,,,,,,,,,
+#  TABLE: game_stats ,,,,,,,,,,
+id,user_id,wins,losses,draws,games_played,total_time_played,highest_streak,current_streak,rating,
+1,1,2,1,0,3,1020,2,0,1100,
+2,2,1,2,0,3,1140,1,0,900,
+3,3,1,1,0,2,840,1,0,1000,
+,,,,,,,,,,
+#  TABLE: game_history ,,,,,,,,,,
+id,game_mode,player1_id,player2_id,player3_id,winner_id,result,moves_count,duration,board_state,played_at
+1,2player,1,2,NULL,1,win,28,300,"[[null,null,null,null,null,null,null,null,null,null],[null,null,""X"",""O"",null,null,null,null,null,null],[null,null,""X"",""O"",null,null,null,null,null,null],[null,null,""X"",""O"",null,null,null,null,null,null],[null,null,""X"",""O"",null,null,null,null,null,null],[null,null,""X"",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null]]",11/2/2024 14:00
+2,vs_bot,1,NULL,NULL,1,win,20,240,"[[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,""X"",""O"",null,null,null,null,null,null],[null,null,""X"",""O"",null,null,null,null,null,null],[null,null,""X"",""O"",null,null,null,null,null,null],[null,null,""X"",""O"",null,null,null,null,null,null],[null,null,""X"",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null]]",11/2/2024 15:00
+3,2player,2,3,NULL,2,win,30,360,"[[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,""X"",""O"",null,null,null,null,null,null,null],[null,""X"",""O"",null,null,null,null,null,null,null],[null,""X"",""O"",null,null,null,null,null,null,null],[null,""X"",""O"",null,null,null,null,null,null,null],[null,""X"",null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null]]",11/2/2024 16:00
+4,3player,1,2,3,3,win,42,480,"[[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,""X"",""O"",""V"",null,null,null,null,null],[null,null,""X"",""O"",""V"",null,null,null,null,null],[null,null,""O"",""X"",""V"",null,null,null,null,null],[null,null,null,""X"",""V"",null,null,null,null,null],[null,null,null,""O"",""V"",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null]]",11/2/2024 17:00

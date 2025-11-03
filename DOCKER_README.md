@@ -1,12 +1,15 @@
 # 🐳 Hướng Dẫn Docker - Game Cờ Caro
 
 ## Tóm Tắt
+
 Project này đã được cấu hình để chạy hoàn toàn bằng Docker Compose, bao gồm:
+
 - **PostgreSQL** (Database)
 - **Node.js Server** (Backend API + Socket.IO)
 - **React Client** (Frontend)
 
 ## 📦 Yêu Cầu
+
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) đã cài đặt
 
 ## 🚀 Chạy Project
@@ -24,6 +27,7 @@ docker-compose up -d
 ```
 
 Sau khoảng 1-2 phút, mở trình duyệt:
+
 - **Frontend**: http://localhost:3000
 - **Backend API**: http://localhost:3001
 - **PostgreSQL**: localhost:5432
@@ -76,6 +80,7 @@ btl/
 ## 🔧 Cấu Hình
 
 ### Database
+
 - Host: `postgres` (trong Docker network)
 - Port: `5432`
 - Database: `caro_game`
@@ -83,6 +88,7 @@ btl/
 - Password: `postgres123`
 
 ### Ports
+
 - PostgreSQL: `5432`
 - Server: `3001`
 - Client: `3000`
@@ -90,11 +96,13 @@ btl/
 ## ⚠️ Lưu Ý
 
 1. **Lần đầu chạy** sẽ mất 1-2 phút để:
+
    - Download images (postgres, node)
    - Build server và client
    - Khởi tạo database với schema
 
 2. **Database data** được lưu trong Docker volume:
+
    - Dữ liệu không mất khi restart
    - Chỉ mất khi chạy `docker-compose down -v`
 
@@ -105,18 +113,21 @@ btl/
 ## 🐛 Troubleshooting
 
 ### Port đã được sử dụng
+
 ```bash
 docker-compose down
 # Tắt chương trình đang dùng port 3000, 3001, hoặc 5432
 ```
 
 ### Database không khởi tạo
+
 ```bash
 docker-compose down -v
 docker-compose up --build
 ```
 
 ### Container không start
+
 ```bash
 # Xem logs chi tiết
 docker-compose logs
@@ -127,6 +138,6 @@ docker-compose logs server
 ```
 
 ## 📚 Tài Liệu Khác
+
 - **QUICKSTART.md** - Hướng dẫn chạy nhanh
 - **README.md** - Tài liệu chi tiết về project
-

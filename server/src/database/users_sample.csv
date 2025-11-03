@@ -1,0 +1,7 @@
+username,email,password_hash,created_at,last_login
+alice_nguyen,alice@example.com,$2b$10$rKvVPr8e9xFQN8YGJQqYN.QVQy.Oa9qVJ.8Z7xN5bP8Y1J7cR8QGC,2024-01-15 10:30:00,2024-11-02 09:15:00
+bob_tran,bob@example.com,$2b$10$rKvVPr8e9xFQN8YGJQqYN.QVQy.Oa9qVJ.8Z7xN5bP8Y1J7cR8QGC,2024-01-20 14:20:00,2024-11-02 08:45:00
+charlie_le,charlie@example.com,$2b$10$rKvVPr8e9xFQN8YGJQqYN.QVQy.Oa9qVJ.8Z7xN5bP8Y1J7cR8QGC,2024-02-01 08:00:00,2024-11-01 20:30:00
+diana_pham,diana@example.com,$2b$10$rKvVPr8e9xFQN8YGJQqYN.QVQy.Oa9qVJ.8Z7xN5bP8Y1J7cR8QGC,2024-02-10 16:45:00,2024-11-02 07:00:00
+ethan_vo,ethan@example.com,$2b$10$rKvVPr8e9xFQN8YGJQqYN.QVQy.Oa9qVJ.8Z7xN5bP8Y1J7cR8QGC,2024-02-15 11:30:00,2024-11-01 18:20:00
+

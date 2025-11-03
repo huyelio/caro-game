@@ -190,6 +190,13 @@ PORT=4000 npm start
 
 ## 📚 Đọc thêm
 
-Xem **README.md** để hiểu chi tiết về kiến trúc và cách hoạt động.
+### Tài liệu quan trọng:
+
+- **APP_FLOW.md** - 🔥 **Luồng hoạt động chi tiết** từ đăng nhập đến kết thúc ván đấu (bao gồm các hàm được gọi)
+- **API_REFERENCE.md** - 📡 API endpoints và Socket.IO events reference
+- **DATASET_GUIDE.md** - 📊 Hướng dẫn import dataset_sample.csv (dữ liệu nhỏ gọn, logic)
+- **SEED_DATA_GUIDE.md** - 🌱 Hướng dẫn import seed_data.sql (dữ liệu đầy đủ hơn)
+- **DOCKER_README.md** - 🐳 Hướng dẫn Docker chi tiết
+- **README.md** - 📖 Tổng quan về project
 
 **Chúc bạn chơi vui vẻ! 🎉**
